@@ -40,6 +40,9 @@ p.lead {
   background: #555;
   color: #FFF;
 }
+input[type=checkbox] {
+  transform: scale(1.5);
+}
 /* Main elements end */
 
 
@@ -208,4 +211,7 @@ h2.monospace {
 }
 .subtitle {
   opacity: 0.5;
+}
+.edit-btn{
+  margin-left: 200px;
 }
