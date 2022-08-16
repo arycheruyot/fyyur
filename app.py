@@ -10,6 +10,7 @@ from flask import Flask, render_template
 from models import db, Venue, Artist, Show
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
+from models import Artist, Venue, Show, db
 import logging
 from logging import Formatter, FileHandler
 from flask_wtf import Form
@@ -30,6 +31,9 @@ moment = Moment(app)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+
+
 
 #----------------------------------------------------------------------------#
 # Filters.

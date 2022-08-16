@@ -62,6 +62,7 @@ class VenueController():
 
     @venue_blueprint.route('/<int:venue_id>')
     def show_venue(venue_id):
+        venue = Venue.query.filter_by(id=venue_id).first()
         past_shows_query = db.session.query(Show).join(Venue).filter(Show.venue_id==venue_id).filter(Show.start_time<datetime.now()).all()   
         past_shows = []
         for show in past_shows_query:
@@ -85,18 +86,18 @@ class VenueController():
             upcoming_shows.append(show_data)
 
         data = {
-            "id": show.venue.id,
-            "name": show.venue.name,
-            "genres": show.venue.genres,
-            "city": show.venue.city,
-            "state": show.venue.state,
-            "address": show.venue.address,
-            "phone": show.venue.phone,
-            "website_link": show.venue.website_link,
-            "image_link": show.venue.image_link,
-            "facebook_link": show.venue.facebook_link,
-            "seeking_talent": show.venue.seeking_talent,
-            "seeking_description": show.venue.seeking_description,
+            "id": venue.id,
+            "name": venue.name,
+            "genres": venue.genres,
+            "city": venue.city,
+            "state": venue.state,
+            "address": venue.address,
+            "phone": venue.phone,
+            "website_link": venue.website_link,
+            "image_link": venue.image_link,
+            "facebook_link": venue.facebook_link,
+            "seeking_talent": venue.seeking_talent,
+            "seeking_description": venue.seeking_description,
             "past_shows": past_shows,
             "past_shows_count": len(past_shows),
             "upcoming_shows": upcoming_shows,

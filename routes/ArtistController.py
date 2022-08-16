@@ -55,6 +55,7 @@ class ArtistController():
 
     @artist_blueprint.route('/<int:artist_id>')
     def show_artist(artist_id):
+        artist = Artist.query.filter_by(id=artist_id).first()
         past_shows_query = db.session.query(Show).join(Artist).filter(Show.artist_id==artist_id).filter(Show.start_time<datetime.now()).all()   
         past_shows = []
         for show in past_shows_query:
@@ -79,17 +80,17 @@ class ArtistController():
                
 
         data = {
-            "id": show.artist.id,
-            "name": show.artist.name,
-            "genres": show.artist.genres,
-            "city": show.artist.city,
-            "state": show.artist.state,
-            "phone": show.artist.phone,
-            "website_link": show.artist.website_link,
-            "image_link": show.artist.image_link,
-            "facebook_link": show.artist.facebook_link,
-            "seeking_venue": show.artist.seeking_venue,
-            "seeking_description": show.artist.seeking_description,
+            "id": artist.id,
+            "name": artist.name,
+            "genres": artist.genres,
+            "city": artist.city,
+            "state": artist.state,
+            "phone": artist.phone,
+            "website_link": artist.website_link,
+            "image_link": artist.image_link,
+            "facebook_link": artist.facebook_link,
+            "seeking_venue": artist.seeking_venue,
+            "seeking_description": artist.seeking_description,
             "past_shows": past_shows,
             "past_shows_count": len(past_shows),
             "upcoming_shows": upcoming_shows,
