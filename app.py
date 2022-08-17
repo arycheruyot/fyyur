@@ -29,7 +29,7 @@ from routes.ShowController import show_blueprint
 app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
-db = SQLAlchemy(app)
+db.init_app(app)
 migrate = Migrate(app, db)
 
 
@@ -48,6 +48,8 @@ def format_datetime(value, format='medium'):
   return babel.dates.format_datetime(date, format)
 
 app.jinja_env.filters['datetime'] = format_datetime
+
+
 
 #----------------------------------------------------------------------------#
 # Controllers.

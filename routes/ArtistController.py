@@ -15,6 +15,9 @@ import json
 
 artist_blueprint = Blueprint('artists', __name__)
 
+
+
+
 #  Artist
 #  ----------------------------------------------------------------
 class ArtistController():
@@ -115,16 +118,16 @@ class ArtistController():
         # insert form data as a new Venue record in the db, instead
         # modify data to be the data object returned from db insertion
         try:
-            name = request.form['name']
-            city = request.form['city']
-            state = request.form['state']
+            name = request.form.get('name')
+            city = request.form.get('city')
+            state = request.form.get('state')
             genres = request.form.getlist('genres')
-            phone = request.form['phone']
-            image_link = request.form['image_link']
-            facebook_link = request.form['facebook_link']
-            website_link = request.form['website_link']
-            seeking_venue = json.loads(request.form['seeking_venue'].lower())
-            seeking_description = request.form['seeking_description']
+            phone = request.form.get('phone')
+            image_link = request.form.get('image_link')
+            facebook_link = request.form.get('facebook_link')
+            website_link = request.form.get('website_link')
+            seeking_venue = json.loads(request.form.get('seeking_venue').lower())
+            seeking_description = request.form.get('seeking_description')
             created_at = datetime.now()
             artist = Artist(name=name, city=city, state=state, phone=phone,
                         genres=genres,facebook_link=facebook_link, image_link=image_link,
@@ -177,16 +180,16 @@ class ArtistController():
         artist = Artist.query.get(artist_id)
         error = False
         try:
-            artist.name = request.form['name']
-            artist.city = request.form['city']
-            artist.state = request.form['state']
+            artist.name = request.form.get('name')
+            artist.city = request.form.get('city')
+            artist.state = request.form.get('state')
             artist.genres = request.form.getlist('genres')
-            artist.phone = request.form['phone']
-            artist.image_link = request.form['image_link']
-            artist.facebook_link = request.form['facebook_link']
-            artist.website_link = request.form['website_link']
-            artist.seeking_venue = json.loads(request.form['seeking_venue'].lower())
-            artist.seeking_description = request.form['seeking_description']
+            artist.phone = request.form.get('phone')
+            artist.image_link = request.form.get('image_link')
+            artist.facebook_link = request.form.get('facebook_link')
+            artist.website_link = request.form.get('website_link')
+            artist.seeking_venue = json.loads(request.form.get('seeking_venue').lower())
+            artist.seeking_description = request.form.get('seeking_description')
 
             db.session.commit()
         except:

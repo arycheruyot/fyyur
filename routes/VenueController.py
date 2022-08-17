@@ -118,17 +118,17 @@ class VenueController():
     def create_venue_submission():
         error = False
         try:
-            name = request.form['name']
-            city = request.form['city']
-            state = request.form['state']
-            address = request.form['address']
+            name = request.form.get('name')
+            city = request.form.get('city')
+            state = request.form.get('state')
+            address = request.form.get('address')
             genres = request.form.getlist('genres')
-            phone = request.form['phone']
-            image_link = request.form['image_link']
-            facebook_link = request.form['facebook_link']
-            website_link = request.form['website_link']
-            seeking_talent = bool(request.form['seeking_talent'])
-            seeking_description = request.form['seeking_description']
+            phone = request.form.get('phone')
+            image_link = request.form.get('image_link')
+            facebook_link = request.form.get('facebook_link')
+            website_link = request.form.get('website_link')
+            seeking_talent = bool(request.form.get('seeking_talent').lower())
+            seeking_description = request.form.get('seeking_description')
             created_at = datetime.now()
             venue = Venue(name=name, city=city, state=state, address=address, phone=phone,
                         genres=genres,facebook_link=facebook_link, image_link=image_link,
@@ -183,17 +183,17 @@ class VenueController():
         venue = Venue.query.get(venue_id)
         error = False
         try:
-            venue.name = request.form['name']
-            venue.city = request.form['city']
-            venue.state = request.form['state']
-            venue.address = request.form['address']
+            venue.name = request.form.get('name')
+            venue.city = request.form.get('city')
+            venue.state = request.form.get('state')
+            venue.address = request.form.get('address')
             venue.genres = request.form.getlist('genres')
-            venue.phone = request.form['phone']
-            venue.image_link = request.form['image_link']
-            venue.facebook_link = request.form['facebook_link']
-            venue.website_link = request.form['website_link']
-            venue.seeking_talent = json.loads(request.form['seeking_talent'].lower())
-            venue.seeking_description = request.form['seeking_description']
+            venue.phone = request.form.get('phone')
+            venue.image_link = request.form.get('image_link')
+            venue.facebook_link = request.form.get('facebook_link')
+            venue.website_link = request.form.get('website_link')
+            venue.seeking_talent = json.loads(request.form.get('seeking_talent').lower())
+            venue.seeking_description = request.form.get('seeking_description')
 
             db.session.commit()
         except:
